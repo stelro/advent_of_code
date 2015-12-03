@@ -44,8 +44,6 @@ int main()
 
     while(input >> noskipws >> ch) {
 
-
-
         if(ch == '^') {
             yaxis += 1;
             p = make_pair(yaxis,xaxis);
@@ -69,8 +67,6 @@ int main()
             p = make_pair(yaxis,xaxis);
             addVisited(p);
         }
-
-
     }
 
     cout << "map size: " << visitedPoints.size() << endl;
