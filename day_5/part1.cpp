@@ -20,10 +20,26 @@ int checkVowels(const string &value)
 
 bool containsPair(const string &value)
 {
-    for (int i = 0; i < (int)value.size(); i++) {
-        for(int j = 1; j < (int)value.size(); j++) {
-            if(value[i] == value[j])
-                return true;
+
+    for(int i = 0; i < (int)value.size(); i++) {
+        if(value[i] == value[i+1])
+            return true;
+    }
+
+    return false;
+}
+
+bool notThisString(const string &value)
+{
+    char a_array[4] = {'a','c','p','x'};
+    char b_array[4] = {'b','d','q','y'};
+
+    for(int i = 0; i < (int)value.size(); i++) {
+        for(int j = 0; j < 4; j++) {
+            if(value[i] == a_array[j]) {
+                if(value[i+1] == b_array[j])
+                    return true;
+            }
         }
     }
 
@@ -35,12 +51,18 @@ int main()
     ifstream input("input.txt");
     string line;
 
+    size_t nice{0};
+
+
     while(getline(input,line)) {
-       if(checkVowels(line) >= 3)
-          cout << " true " << endl;
-      else
-         cout << "false " << endl;
+        if(!notThisString(line)) {
+            if((containsPair(line)) && (checkVowels(line) >= 3))
+                nice++;
+        }
     }
 
+    cout << "nice: " << nice << endl;
+
+    input.close();
     return 0;
 }
